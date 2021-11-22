@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            xmlns:pages="clr-namespace:Phonenest.Pages"
+            xmlns:models="clr-namespace:Phonenest.Models"
+            x:Class="Phonenest.Pages.AppMainPage"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            BarBackgroundColor="White"
+            SelectedTabColor="#2e3192"
+            UnselectedTabColor="Gray">
+    <pages:HomePage />
+    <pages:ProductSearchPage />
+    <pages:CartPage />
+    <pages:UserAccountPage />
+</TabbedPage>

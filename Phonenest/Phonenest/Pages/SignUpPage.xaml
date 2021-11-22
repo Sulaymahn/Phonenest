@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:effects="clr-namespace:Phonenest.Effects"
+             x:Class="Phonenest.Pages.SignUpPage"
+             BackgroundColor="White">
+    <Grid RowDefinitions="*, 64">
+        <Grid Grid.Row="0"
+              Padding="48">
+            <Grid RowSpacing="32"
+                  RowDefinitions="*, 32, 64, 64, 56, 32"
+                  HorizontalOptions="CenterAndExpand"
+                  VerticalOptions="CenterAndExpand">
+                <Image Grid.Row="0"
+                       Source="pnsii.png"
+                       Aspect="AspectFit"
+                       Margin="32, 0" />
+                <Label Grid.Row="1"
+                       Text="Log in to continue"
+                       FontFamily="Bold"
+                       TextColor="#1A1A1A"
+                       FontSize="24"
+                       HorizontalTextAlignment="Center" />
+                <Frame Grid.Row="2"
+                       HasShadow="False"
+                       BackgroundColor="#EEFBFF"
+                       CornerRadius="8"
+                       Padding="16, 8">
+                    <StackLayout Spacing="0">
+                        <Label Text="Email"
+                               FontFamily="Regular"
+                               FontSize="16"
+                               TextColor="#B3B3B3" />
+                        <Entry x:Name="emailEntry"
+                               TextColor="#1A1A1A"
+                               FontFamily="Bold"
+                               FontSize="20"
+                               Placeholder="yourname@example.com">
+                            <Entry.Effects>
+                                <effects:DefaultEntryEffect />
+                            </Entry.Effects>
+                        </Entry>
+                    </StackLayout>
+                </Frame>
+                <Frame Grid.Row="3"
+                       HasShadow="False"
+                       BackgroundColor="#EEFBFF"
+                       CornerRadius="8"
+                       Padding="16, 8">
+                    <Grid ColumnDefinitions="*, 18">
+                        <StackLayout Grid.Column="0"
+                                     Spacing="0">
+                            <Label Text="Password"
+                                   FontSize="16"
+                                   FontFamily="Regular"
+                                   TextColor="#B3B3B3" />
+                            <Entry x:Name="passwordEntry"
+                                   TextColor="#1A1A1A"
+                                   FontFamily="Bold"
+                                   FontSize="20"
+                                   Placeholder="yourpassword">
+                                <Entry.Effects>
+                                    <effects:DefaultEntryEffect />
+                                </Entry.Effects>
+                            </Entry>
+                        </StackLayout>
+                        <Image Source="pe.png"
+                               Aspect="AspectFit"
+                               Grid.Column="1" />
+                    </Grid>
+                </Frame>
+                <Button Grid.Row="4"
+                        Text="Login"
+                        FontFamily="Bold"
+                        FontSize="16"
+                        CornerRadius="30"
+                        BackgroundColor="#0071BC"
+                        Clicked="SignInClicked"/>
+                <Label Grid.Row="5"
+                       Text="Forgot password?"
+                       FontFamily="Regular"
+                       FontSize="16"
+                       TextColor="#0071BC"
+                       HorizontalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1"
+                                              Tapped="ForgotPassword" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+        </Grid>
+        <Frame Grid.Row="1"
+               BackgroundColor="#B3E4FF"
+               CornerRadius="0">
+            <Label HorizontalTextAlignment="Center"
+                   FontFamily="Regular"
+                   FontSize="16">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Don't have any account? "
+                              TextColor="#1A1A1A" />
+                        <Span Text="Create one"
+                              TextColor="#0071BC">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="CreateAccount"
+                                                      NumberOfTapsRequired="1" />
+                            </Span.GestureRecognizers>
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+        </Frame>
+    </Grid>
+</ContentPage>

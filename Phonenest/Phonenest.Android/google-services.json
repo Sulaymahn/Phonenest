@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "816958341540",
+    "project_id": "phonest-ed100",
+    "storage_bucket": "phonest-ed100.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:816958341540:android:f5422c7c20ba6e3ef68131",
+        "android_client_info": {
+          "package_name": "com.unghostdude.phonenest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "816958341540-3517h567bpoajdsg94rmr1ar01pkmqha.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArK0M91mUFPxQ33NpX9p_qm6Ob1Uzf1Z0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "816958341540-3517h567bpoajdsg94rmr1ar01pkmqha.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:Phonenest.Models"
+             x:Class="Phonenest.Pages.CartPage"
+             Title="Cart">
+    <ContentPage.IconImageSource>
+        <FontImageSource FontFamily="MD"
+                         Glyph="{x:Static models:IconFont.Shopping_cart}"
+                         Size="80" />
+    </ContentPage.IconImageSource>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Wicked man, why you click am after you know say i no finish am. Troublemaker kawai!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

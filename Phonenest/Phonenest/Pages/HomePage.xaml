@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:Phonenest.Models"
+             x:Class="Phonenest.Pages.HomePage"
+             BackgroundColor="#eeeeee"
+             Title="Home">
+    <ContentPage.IconImageSource>
+        <FontImageSource FontFamily="MD"
+                         Glyph="{x:Static models:IconFont.Home}"
+                         Size="80"/>
+    </ContentPage.IconImageSource>
+
+    <ContentPage.Content>
+        <Grid RowDefinitions="64, 48, 100, 48, *"
+              RowSpacing="0"
+              Padding="0">
+            <Grid ColumnDefinitions="32, *, 32"
+                  BackgroundColor="#2e3192"
+                  Padding="16, 0">
+                <Image Grid.Column="1"
+                       Margin="18"
+                       Source="pnsii_d.png"
+                       Aspect="AspectFit" />
+            </Grid>
+            <Grid Grid.Row="1"
+                  BackgroundColor="#1b1464"
+                  ColumnDefinitions="*, *, *, *"
+                  ColumnSpacing="0">
+                <Frame Grid.Column="0"
+                       CornerRadius="0"
+                       Padding="0"
+                       BackgroundColor="Transparent">
+                    <Label Text="Phones"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           FontFamily="Regular"
+                           FontSize="16"
+                           TextColor="White"/>
+                </Frame>
+                <Frame Grid.Column="1"
+                       CornerRadius="0"
+                       Padding="0"
+                       BackgroundColor="Transparent">
+                    <Label Text="Laptops"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           FontFamily="Regular"
+                           FontSize="16"
+                           TextColor="White"/>
+                </Frame>
+                <Frame Grid.Column="2"
+                       CornerRadius="0"
+                       Padding="0"
+                       BackgroundColor="Transparent">
+                    <Label Text="Consoles"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           FontFamily="Regular"
+                           FontSize="16"
+                           TextColor="White"/>
+                </Frame>
+                <Frame Grid.Column="3"
+                       CornerRadius="0"
+                       Padding="0"
+                       BackgroundColor="Transparent">
+                    <Label Text="Accessories"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           FontFamily="Regular"
+                           FontSize="16"
+                           TextColor="White"/>
+                </Frame>
+            </Grid>
+            <Grid Grid.Row="2">
+                <CarouselView ItemsSource="{Binding Source={x:Static models:MockStore.Adverts}}"
+                              x:Name="AdsCarouselView">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Padding="0"
+                                   CornerRadius="0">
+                                <Image Source="{Binding Source}"
+                                       Aspect="AspectFill">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"
+                                                              NumberOfTapsRequired="1" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </Frame>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+            </Grid>
+            <Grid Grid.Row="3"
+                  ColumnDefinitions="*, 100"> 
+                <Label Grid.Column="0"
+                    Text="Our products"
+                       FontFamily="Bold"
+                       TextColor="#333333"
+                       HorizontalTextAlignment="Start"
+                       VerticalTextAlignment="Center"
+                       FontSize="24"
+                       Padding="16, 0" />
+                <Picker Grid.Column="1"
+                        Margin="16, 0"
+                        Title="Sort"
+                        TitleColor="#333333"
+                        HorizontalTextAlignment="Center"
+                        FontFamily="Bold"/>
+            </Grid>
+            <CollectionView Grid.Row="4"
+                            ItemsSource="{x:Static models:MockStore.Products}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                                     Span="2"
+                                     VerticalItemSpacing="2"
+                                     HorizontalItemSpacing="2"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame CornerRadius="0"
+                               HeightRequest="200"
+                               Padding="16"
+                               HasShadow="False">
+                            <Grid RowDefinitions="*, 32, 16"
+                                  RowSpacing="0">
+                                <Image Source="{Binding Thumbnail}"
+                                       Aspect="AspectFit"/>
+                                <Label Grid.Row="1"
+                                       Text="{Binding Name}"
+                                       FontFamily="Regular"
+                                       FontSize="16"
+                                       TextColor="Black"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalTextAlignment="Center"/>
+                                <Label Grid.Row="2"
+                                       Text="{Binding Price, StringFormat='NGN {0}'}"
+                                       FontFamily="Bold"
+                                       FontSize="18"
+                                       TextColor="Black"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalTextAlignment="Center"/>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
