@@ -2,23 +2,118 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:Phonenest.Models"
+             xmlns:Effects="clr-namespace:Phonenest.Effects"
              x:Class="Phonenest.Pages.ProductSearchPage"
+             BackgroundColor="#EEEEEE"
              Title="Search">
     <ContentPage.IconImageSource>
         <FontImageSource FontFamily="MD"
-                         Glyph="{x:Static models:IconFont.Search}"
+                         Glyph="{Static Member=models:IconFont.Search}"
                          Size="80" />
     </ContentPage.IconImageSource>
-    <ContentPage.Content>
-        <StackLayout>
-            <Image VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand">
-                <Image.Source>
+    <Grid RowDefinitions="64, 48, *"
+          RowSpacing="0">
+        <Grid ColumnDefinitions="32, *, 32"
+              BackgroundColor="#2e3192"
+              Padding="16, 0">
+            <Label Grid.Column="1"
+                   Text="Search"
+                   FontFamily="Bold"
+                   TextColor="White"
+                   FontSize="24"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center" />
+        </Grid>
+        <Grid Grid.Row="1"
+              ColumnDefinitions="*, 48"
+              ColumnSpacing="0"
+              Padding="0">
+            <Frame Grid.Row="0"
+                   Grid.Column="0"
+                   CornerRadius="0"
+                   BackgroundColor="#1b1464"
+                   Padding="16, 0">
+                <Entry Placeholder="E.g Product/Brand name"
+                       PlaceholderColor="DarkGray"
+                       TextColor="White"
+                       FontFamily="Regular"
+                       x:Name="entry">
+                    <Entry.Effects>
+                        <Effects:DefaultEntryEffect />
+                    </Entry.Effects>
+                </Entry>
+
+            </Frame>
+            <Button Grid.Column="1"
+                    Margin="0"
+                    Padding="0"
+                    CornerRadius="0"
+                    BackgroundColor="#1b1464"
+                    Clicked="OnSearch">
+                <Button.ImageSource>
                     <FontImageSource FontFamily="MD"
                                      Glyph="{x:Static models:IconFont.Search}"
-                                     Size="80"/>
-                </Image.Source>
-            </Image>
-        </StackLayout>
-    </ContentPage.Content>
+                                     Size="20" />
+                </Button.ImageSource>
+            </Button>
+        </Grid>
+        <CollectionView x:Name="products"
+                        SelectionMode="Single"
+                        SelectionChanged="products_SelectionChanged"
+                        Grid.Row="2">
+            <CollectionView.EmptyView>
+                <Grid>
+                    <Label Text="There's nothing here"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           TextColor="LightGray"
+                           FontFamily="Bold"
+                           FontSize="16" />
+                </Grid>
+            </CollectionView.EmptyView>
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical"
+                                   ItemSpacing="2" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BackgroundColor="White"
+                           CornerRadius="0"
+                           HeightRequest="70">
+                        <Grid RowDefinitions="*, *"
+                              ColumnDefinitions="80, *"
+                              ColumnSpacing="8">
+                            <Image Grid.RowSpan="2"
+                                   Source="{Binding Thumbnail}" />
+                            <StackLayout Grid.Column="1">
+                                <Label Text="{Binding Manufacturer}"
+                                       FontFamily="Bold"
+                                       FontSize="16"
+                                       TextColor="#333333"
+                                       HorizontalTextAlignment="Start"
+                                       VerticalTextAlignment="Center" />
+                                <Label Text="{Binding Name}"
+                                       FontFamily="Regular"
+                                       FontSize="20"
+                                       TextColor="#333333"
+                                       HorizontalTextAlignment="Start"
+                                       VerticalTextAlignment="Center" />
+                            </StackLayout>
+                            <Grid Grid.Column="1"
+                                  Grid.Row="1"
+                                  ColumnDefinitions="*, 64">
+                                <Label HorizontalTextAlignment="Start"
+                                       VerticalTextAlignment="End"
+                                       Text="{Binding Price, StringFormat='{0:C0}'}"
+                                       FontFamily="Bold"
+                                       FontSize="20"
+                                       TextColor="Black" />
+                            </Grid>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+    </Grid>
 </ContentPage>

@@ -8,7 +8,7 @@
     <ContentPage.IconImageSource>
         <FontImageSource FontFamily="MD"
                          Glyph="{x:Static models:IconFont.Home}"
-                         Size="80"/>
+                         Size="80" />
     </ContentPage.IconImageSource>
 
     <ContentPage.Content>
@@ -73,43 +73,35 @@
                 </Frame>
             </Grid>
             <Grid Grid.Row="2">
-                <CarouselView ItemsSource="{Binding Source={x:Static models:MockStore.Adverts}}"
-                              x:Name="AdsCarouselView">
+                <CarouselView x:Name="AdsCarouselView"
+                              ItemsSource="{Binding Adverts}">
                     <CarouselView.ItemTemplate>
                         <DataTemplate>
                             <Frame Padding="0"
                                    CornerRadius="0">
                                 <Image Source="{Binding Source}"
                                        Aspect="AspectFill">
-                                    <Image.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"
-                                                              NumberOfTapsRequired="1" />
-                                    </Image.GestureRecognizers>
                                 </Image>
                             </Frame>
                         </DataTemplate>
                     </CarouselView.ItemTemplate>
                 </CarouselView>
             </Grid>
-            <Grid Grid.Row="3"
-                  ColumnDefinitions="*, 100"> 
+            <Grid Grid.Row="3">
                 <Label Grid.Column="0"
-                    Text="Our products"
+                       Text="Our products"
                        FontFamily="Bold"
                        TextColor="#333333"
                        HorizontalTextAlignment="Start"
                        VerticalTextAlignment="Center"
                        FontSize="24"
                        Padding="16, 0" />
-                <Picker Grid.Column="1"
-                        Margin="16, 0"
-                        Title="Sort"
-                        TitleColor="#333333"
-                        HorizontalTextAlignment="Center"
-                        FontFamily="Bold"/>
             </Grid>
             <CollectionView Grid.Row="4"
-                            ItemsSource="{x:Static models:MockStore.Products}">
+                            x:Name="productsCol"
+                            ItemsSource="{Binding Products}"
+                            SelectionMode="Single"
+                            SelectionChanged="CollectionView_SelectionChanged">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical"
                                      Span="2"
@@ -119,24 +111,31 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Frame CornerRadius="0"
-                               HeightRequest="200"
+                               HeightRequest="100"
                                Padding="16"
                                HasShadow="False">
-                            <Grid RowDefinitions="*, 32, 16"
+                            <Grid RowDefinitions="*, 16, 16"
                                   RowSpacing="0">
                                 <Image Source="{Binding Thumbnail}"
                                        Aspect="AspectFit"/>
                                 <Label Grid.Row="1"
-                                       Text="{Binding Name}"
                                        FontFamily="Regular"
                                        FontSize="16"
                                        TextColor="Black"
                                        HorizontalTextAlignment="Center"
-                                       VerticalTextAlignment="Center"/>
+                                       VerticalTextAlignment="Center">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding Manufacturer}"/>
+                                            <Span Text=" " />
+                                            <Span Text="{Binding Name}"/>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
                                 <Label Grid.Row="2"
-                                       Text="{Binding Price, StringFormat='NGN {0}'}"
+                                       Text="{Binding Price, StringFormat='{0:C0}'}"
                                        FontFamily="Bold"
-                                       FontSize="18"
+                                       FontSize="16"
                                        TextColor="Black"
                                        HorizontalTextAlignment="Center"
                                        VerticalTextAlignment="Center"/>

@@ -1,12 +1,93 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Phonenest.Pages.ProductsDetailPage">
+             xmlns:models="clr-namespace:Phonenest.Models"
+             xmlns:viewmodels="clr-namespace:Phonenest.ViewModels"
+             x:Class="Phonenest.Pages.ProductsDetailPage"
+             BackgroundColor="White">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Frame Grid.Row="0"
+               Grid.RowSpan="2"
+               Padding="16, 16"
+               BackgroundColor="#2e3192"
+               HasShadow="False"
+               CornerRadius="0">
+            <ScrollView>
+                <StackLayout Spacing="8">
+                    <BoxView BackgroundColor="#1b1464"
+                             HeightRequest="4"
+                             CornerRadius="1"
+                             Opacity="0.3"
+                             Margin="150, 1" />
+                    <Label Text="{Binding Manufacturer}"
+                           TextColor="White"
+                           FontSize="20"
+                           FontFamily="Regular"/>
+                    <Label Text="{Binding Name}"
+                           TextColor="White"
+                           FontSize="50"
+                           FontFamily="Bold" />
+                    <Label Text="{Binding Price, StringFormat='NGN {0}'}"
+                           FontFamily="Regular"
+                           FontSize="16"
+                           TextColor="White"/>
+                    <Grid ColumnDefinitions="*, 48"
+                          RowDefinitions="48">
+                        <Button Grid.Column="1"
+                                BackgroundColor="Transparent"
+                                CornerRadius="0">
+                            <Button.ImageSource>
+                                <FontImageSource FontFamily="MD"
+                                                 Glyph="{x:Static models:IconFont.Phone}"
+                                                 Color="White"
+                                                 Size="32"/>
+                            </Button.ImageSource>
+                        </Button>
+                        <Button Text="Add to cart"
+                                x:Name="cartAddBtn"
+                                Grid.Column="0"
+                                BackgroundColor="#1b1464"
+                                FontFamily="Bold"
+                                FontSize="20"
+                                CornerRadius="0"
+                                Clicked="Button_Clicked" />
+                    </Grid>
+                    <Label Text="{Binding Description}"
+                           FontFamily="Regular"
+                           FontSize="18"
+                           HorizontalTextAlignment="Start"
+                           VerticalTextAlignment="Start" />
+                    <CarouselView ItemsSource="{Binding ImageRef}"
+                                  BackgroundColor="White"
+                                  HeightRequest="200"
+                                  IndicatorView="indicator">
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame CornerRadius="0"
+                                       HasShadow="False"
+                                       BackgroundColor="Transparent"
+                                       Padding="32">
+                                    <Image Source="{Binding}"
+                                           Aspect="AspectFit" />
+                                </Frame>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+                    <IndicatorView x:Name="indicator"
+                                   IndicatorColor="#1b1464"
+                                   SelectedIndicatorColor="White"/>
+                    <Label Text="Specs"
+                           FontFamily="Bold"
+                           FontSize="24"
+                           TextColor="White"
+                           />
+                    <Label Text="{Binding LongDescription}"
+                           FontFamily="Regular"
+                           FontSize="18"
+                           HorizontalTextAlignment="Start"
+                           VerticalTextAlignment="Start"/>
+                </StackLayout>
+            </ScrollView>
+        </Frame>
     </ContentPage.Content>
 </ContentPage>

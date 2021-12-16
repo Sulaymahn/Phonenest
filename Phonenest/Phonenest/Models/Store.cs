@@ -9,5 +9,6 @@ namespace Phonenest.Models
         public List<Product> Products { get; set; }
         public List<Advert> Adverts { get; set; }
         public List<string> Categories { get; set; }
+        public Dictionary<Product, int> Cart { get; set; }
     }
 }

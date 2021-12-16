@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:Phonenest.Models"
              x:Class="Phonenest.Pages.UserAccountPage"
+             BackgroundColor="#EEEEEE"
              Title="Me">
     <ContentPage.IconImageSource>
         <FontImageSource FontFamily="MD"
@@ -10,15 +11,18 @@
                          Size="80" />
     </ContentPage.IconImageSource>
     <ContentPage.Content>
-        <StackLayout>
-            <Image VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand">
-                <Image.Source>
-                    <FontImageSource FontFamily="MD"
-                                     Glyph="{x:Static models:IconFont.Person}"
-                                     Size="80"/>
-                </Image.Source>
-            </Image>
-        </StackLayout>
+        <Grid RowDefinitions="64, *">
+            <Label Text="Me"
+                   BackgroundColor="#2e3192"
+                   FontFamily="Bold"
+                   FontSize="24"
+                   TextColor="White"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center">
+            </Label>
+            <TableView Grid.Row="1">
+            </TableView>
+        </Grid>
+        
     </ContentPage.Content>
 </ContentPage>

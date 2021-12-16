@@ -2,6 +2,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Phonenest.Pages;
+using Phonenest.Models;
 
 namespace Phonenest
 {
@@ -10,7 +11,6 @@ namespace Phonenest
         public App()
         {
             InitializeComponent();
-
             MainPage = new AppMainPage();
         }
 
