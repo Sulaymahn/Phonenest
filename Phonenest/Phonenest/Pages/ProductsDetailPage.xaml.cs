@@ -41,7 +41,7 @@ namespace Phonenest.Pages
             }
             else
             {
-                MockStore.GetInstance().AddtoCart(_product);
+                MockStore.GetInstance().AddToCart(_product);
                 SwitchToCount();
             }
         }

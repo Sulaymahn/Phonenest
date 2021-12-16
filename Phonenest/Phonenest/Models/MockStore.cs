@@ -5,10 +5,11 @@ using Xamarin.Forms;
 using System.Text;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Phonenest.CustomInterfaces;
 
 namespace Phonenest.Models
 {
-    public class MockStore : INotifyPropertyChanged
+    public class MockStore : IStore, INotifyPropertyChanged
     {
         private static MockStore _instance;
 
@@ -18,7 +19,7 @@ namespace Phonenest.Models
         //Fields
         ObservableCollection<Product> _products;
         ObservableCollection<Advert> _adverts;
-        ObservableCollection<string> _categories;
+        ObservableCollection<string> _productCategories;
         ObservableCollection<CartItem> _cart;
         int _currentCartTotal;
 
@@ -32,9 +33,9 @@ namespace Phonenest.Models
         {
             get => _adverts;
         }
-        public ObservableCollection<string> Categories
+        public ObservableCollection<string> ProductCategories
         {
-            get => _categories;
+            get => _productCategories;
         }
         public ObservableCollection<CartItem> Cart
         {
@@ -72,7 +73,7 @@ namespace Phonenest.Models
                     new Advert(){Source = "https://cdn.dribbble.com/users/1147613/screenshots/16886861/media/2604ffd2bfc763de8ad8ad0c330b7b30.png?compress=1&resize=1200x900", Destination = ""},
                     new Advert(){Source = "https://cdn.dribbble.com/users/914439/screenshots/14195422/media/35ed5e21f369eb47ccd84814efe2375e.png?compress=1&resize=1200x900", Destination = ""}
                 };
-            _categories = new ObservableCollection<string>()
+            _productCategories = new ObservableCollection<string>()
                 {
                     "Phones",
                     "Laptops",
@@ -95,7 +96,7 @@ namespace Phonenest.Models
         void GetCartTotal()
         {
             int total = 0;
-            foreach(CartItem cartItem in Cart)
+            foreach (CartItem cartItem in Cart)
             {
                 total += cartItem.Item.Price;
             }
@@ -103,19 +104,19 @@ namespace Phonenest.Models
 
         void FillCart()
         {
-            AddtoCart(_products[0]);
-            AddtoCart(_products[1]);
-            AddtoCart(_products[2]);
+            AddToCart(_products[0]);
+            AddToCart(_products[1]);
+            AddToCart(_products[2]);
             GetCartTotal();
         }
-        void OnPropertyChanged([CallerMemberName]string name = null)
+        void OnPropertyChanged([CallerMemberName] string name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        public void AddtoCart(Product product)
+        public void AddToCart(Product product)
         {
-            foreach(CartItem cartItem in _cart)
+            foreach (CartItem cartItem in _cart)
             {
                 if (cartItem.Item == product)
                 {
@@ -128,19 +129,30 @@ namespace Phonenest.Models
             _cart.Add(new CartItem() { Item = product, Count = 1 });
             CartTotal += product.Price;
         }
-        public void RemoveFromCart(Product product)
+        public void ReduceFromCart(Product product)
         {
             foreach (CartItem cartItem in _cart)
             {
                 if (cartItem.Item == product)
                 {
-                    if(cartItem.Count == 1)
+                    if (cartItem.Count == 1)
                     {
                         _cart.Remove(cartItem);
                     }
                     cartItem.Count--;
 
                     CartTotal -= product.Price;
+                    return;
+                }
+            }
+        }
+        public void RemoveFromCart(Product product)
+        {
+            foreach (CartItem cartItem in _cart)
+            {
+                if (cartItem.Item == product)
+                {
+                    _cart.Remove(cartItem);
                     return;
                 }
             }

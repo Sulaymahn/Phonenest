@@ -1,6 +1,7 @@
 ﻿using Phonenest.CustomInterfaces;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,8 @@ namespace Phonenest.Pages
 
             InitializeComponent();
             auth = DependencyService.Get<IFirebaseAuthenticator>();
-            Console.WriteLine(Application.Current.Properties.ContainsKey("Token"));
+            Debug.WriteLine(Application.Current.Properties.ContainsKey("Token"));
 
-            /*
             if (Application.Current.Properties.ContainsKey("Token"))
             {
                 var token = Application.Current.Properties["Token"] as string;
@@ -39,7 +39,6 @@ namespace Phonenest.Pages
             {
                 Navigation.PushModalAsync(new SignUpPage());
             }
-            */
         }
     }
 }

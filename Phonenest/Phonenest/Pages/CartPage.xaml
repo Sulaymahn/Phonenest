@@ -85,7 +85,7 @@
                                         </Image.Source>
                                         <Image.GestureRecognizers>
                                             <TapGestureRecognizer NumberOfTapsRequired="1"
-                                                                  Tapped="RemoveCount"
+                                                                  Tapped="ReduceCount"
                                                                   CommandParameter="{Binding .}"/>
                                         </Image.GestureRecognizers>
                                     </Image>
@@ -118,7 +118,8 @@
                                         BackgroundColor="Transparent"
                                         TextColor="Crimson"
                                         FontFamily="Bold"
-                                        Padding="0"/>
+                                        Padding="0"
+                                        Clicked="RemoveFromCart"/>
                             </Grid>
                         </Frame>
                     </DataTemplate>

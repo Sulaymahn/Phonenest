@@ -20,14 +20,14 @@ namespace Phonenest.Pages
         private void AddCount(object sender, System.EventArgs e)
         {
             CartItem item = (sender as Image).BindingContext as CartItem;
-            MockStore.GetInstance().AddtoCart(item.Item);
+            MockStore.GetInstance().AddToCart(item.Item);
             UpdateTotal();
         }
 
-        private void RemoveCount(object sender, System.EventArgs e)
+        private void ReduceCount(object sender, System.EventArgs e)
         {
             CartItem item = (sender as Image).BindingContext as CartItem;
-            MockStore.GetInstance().RemoveFromCart(item.Item);
+            MockStore.GetInstance().ReduceFromCart(item.Item);
             UpdateTotal();
         }
 
@@ -43,6 +43,13 @@ namespace Phonenest.Pages
                 await Navigation.PushModalAsync(new ProductsDetailPage((Product)e.CurrentSelection.FirstOrDefault()));
                 ((CollectionView)sender).SelectedItem = null;
             }
+        }
+
+        private void RemoveFromCart(object sender, System.EventArgs e)
+        {
+            CartItem item = (sender as Image).BindingContext as CartItem;
+            MockStore.GetInstance().RemoveFromCart(item.Item);
+            UpdateTotal();
         }
     }
 }
