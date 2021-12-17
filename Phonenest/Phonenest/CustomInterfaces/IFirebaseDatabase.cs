@@ -6,5 +6,6 @@ namespace Phonenest.CustomInterfaces
 {
     public interface IFirebaseDatabase
     {
+
     }
 }

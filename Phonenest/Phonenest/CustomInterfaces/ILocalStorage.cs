@@ -7,6 +7,6 @@ namespace Phonenest.CustomInterfaces
     interface ILocalStorage
     {
         void Save(object file, string path);
-        void Load(string path);
+        object Load(string path);
     }
 }
