@@ -24,18 +24,18 @@
                 <Frame Grid.Row="2"
                        HasShadow="False"
                        BackgroundColor="#EEFBFF"
-                       CornerRadius="8"
+                       CornerRadius="0"
                        Padding="16, 8">
                     <StackLayout Spacing="0">
                         <Label Text="Email"
                                FontFamily="Regular"
                                FontSize="16"
-                               TextColor="#B3B3B3" />
+                               Opacity="0.5"
+                               TextColor="#1A1A1A" />
                         <Entry x:Name="emailEntry"
                                TextColor="#1A1A1A"
                                FontFamily="Bold"
-                               FontSize="20"
-                               Placeholder="yourname@example.com">
+                               FontSize="20">
                             <Entry.Effects>
                                 <effects:DefaultEntryEffect />
                             </Entry.Effects>
@@ -45,20 +45,20 @@
                 <Frame Grid.Row="3"
                        HasShadow="False"
                        BackgroundColor="#EEFBFF"
-                       CornerRadius="8"
+                       CornerRadius="0"
                        Padding="16, 8">
                     <Grid ColumnDefinitions="*, 18">
                         <StackLayout Grid.Column="0"
                                      Spacing="0">
                             <Label Text="Password"
                                    FontSize="16"
+                                   Opacity="0.5"
                                    FontFamily="Regular"
-                                   TextColor="#B3B3B3" />
+                                   TextColor="#1A1A1A" />
                             <Entry x:Name="passwordEntry"
                                    TextColor="#1A1A1A"
                                    FontFamily="Bold"
-                                   FontSize="20"
-                                   Placeholder="yourpassword">
+                                   FontSize="20">
                                 <Entry.Effects>
                                     <effects:DefaultEntryEffect />
                                 </Entry.Effects>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Phonenest.CustomInterfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,11 @@ namespace Phonenest.Pages
         public UserAccountPage()
         {
             InitializeComponent();
+        }
+
+        private void OnLogOut(object sender, EventArgs e)
+        {
+            DependencyService.Get<ILocalStorage>().DeleteCredential();
         }
     }
 }

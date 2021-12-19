@@ -66,8 +66,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Effects\DefaultEntryEffect.cs" />
+    <Compile Include="Helpers\AppData.cs" />
     <Compile Include="Implementations\FirebaseAuthenticator.cs" />
     <Compile Include="Implementations\FirebaseDB.cs" />
+    <Compile Include="Implementations\LocalStorage.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

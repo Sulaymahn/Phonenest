@@ -31,12 +31,12 @@ namespace Phonenest.Pages
         private async void SignInClicked(object sender, EventArgs e)
         {
             if (emailEntry.Text == null || passwordEntry.Text == null) return;
-            string token = await auth.LoginWithEmailAndPass(emailEntry.Text, passwordEntry.Text);
+            string response = await auth.LoginWithEmailAndPass(emailEntry.Text, passwordEntry.Text);
 
 
-            if (token != string.Empty)
+            if (response != null)
             {
-                Application.Current.Properties.Add("Token", token);
+                DependencyService.Get<ILocalStorage>().SaveCredential(emailEntry.Text, passwordEntry.Text);
                 await Navigation.PopModalAsync();
             }
             else

@@ -47,7 +47,7 @@ namespace Phonenest.Pages
 
         private void RemoveFromCart(object sender, System.EventArgs e)
         {
-            CartItem item = (sender as Image).BindingContext as CartItem;
+            CartItem item = (sender as Button).BindingContext as CartItem;
             MockStore.GetInstance().RemoveFromCart(item.Item);
             UpdateTotal();
         }

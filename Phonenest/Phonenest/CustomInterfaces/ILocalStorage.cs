@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Phonenest.CustomInterfaces
 {
-    interface ILocalStorage
+    public interface ILocalStorage
     {
-        void Save(object file, string path);
-        object Load(string path);
+        void SaveCredential(string email, string password);
+        string[] GetCredential();
+        void DeleteCredential();
     }
 }

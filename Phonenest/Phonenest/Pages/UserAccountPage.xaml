@@ -11,7 +11,7 @@
                          Size="80" />
     </ContentPage.IconImageSource>
     <ContentPage.Content>
-        <Grid RowDefinitions="64, *">
+        <Grid RowDefinitions="64, *, 48">
             <Label Text="Me"
                    BackgroundColor="#2e3192"
                    FontFamily="Bold"
@@ -20,8 +20,12 @@
                    VerticalTextAlignment="Center"
                    HorizontalTextAlignment="Center">
             </Label>
-            <TableView Grid.Row="1">
-            </TableView>
+            <Button Grid.Row="2"
+                    Text="Log out"
+                    FontFamily="Bold"
+                    BackgroundColor="Crimson"
+                    CornerRadius="0"
+                    Clicked="OnLogOut"/>
         </Grid>
         
     </ContentPage.Content>

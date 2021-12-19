@@ -6,6 +6,7 @@ using Android.Views;
 using Android.Widget;
 using Firebase.Auth;
 using Phonenest.CustomInterfaces;
+using Phonenest.Droid.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace Phonenest.Droid.Implementations
         {
             try
             {
-                await FirebaseAuth.Instance.CreateUserWithEmailAndPasswordAsync(email, password);
+                await AppData.GetAuth().CreateUserWithEmailAndPasswordAsync(email, password);
                 return true;
             }
             catch (Exception)
@@ -33,7 +34,7 @@ namespace Phonenest.Droid.Implementations
 
         public bool IsSignIn()
         {
-            var user = FirebaseAuth.Instance.CurrentUser;
+            var user = AppData.GetAuth().CurrentUser;
             return user != null;
         }
 
@@ -41,26 +42,13 @@ namespace Phonenest.Droid.Implementations
         {
             try
             {
-                var user = await FirebaseAuth.Instance.SignInWithEmailAndPasswordAsync(email, password);
+                var user = await AppData.GetAuth().SignInWithEmailAndPasswordAsync(email, password);
                 var token = user.User.GetIdToken(false);
                 return token.ToString();
             }
             catch (FirebaseAuthException)
             {
-                return String.Empty;
-            }
-        }
-
-        public async Task<bool> LogInWithToken(string token)
-        {
-            var user = await FirebaseAuth.Instance.SignInWithCustomTokenAsync(token);
-            if(user == null)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
+                return null;
             }
         }
 
@@ -68,7 +56,7 @@ namespace Phonenest.Droid.Implementations
         {
             try
             {
-                FirebaseAuth.Instance.SignOut();
+                AppData.GetAuth().SignOut();
                 return true;
             }
             catch (Exception)

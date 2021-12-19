@@ -15,25 +15,25 @@ namespace Phonenest.Pages
     public partial class AppMainPage : TabbedPage
     {
         IFirebaseAuthenticator auth;
+        ILocalStorage localStorage;
 
         public AppMainPage()
         {
 
             InitializeComponent();
             auth = DependencyService.Get<IFirebaseAuthenticator>();
-            Debug.WriteLine(Application.Current.Properties.ContainsKey("Token"));
+            localStorage = DependencyService.Get<ILocalStorage>();
 
-            if (Application.Current.Properties.ContainsKey("Token"))
+            if (localStorage.GetCredential() != null)
             {
-                var token = Application.Current.Properties["Token"] as string;
-                if ((auth.LogInWithToken(token)).Result)
+                string[] credential = localStorage.GetCredential();
+                if (credential.Length != 2)
                 {
-                    DisplayAlert("Welcome", "Nigga it cant work the first time, but it fucking did, yeeeehhaaaa!", "yiha!");
+                    localStorage.DeleteCredential();
+                    Navigation.PushModalAsync(new SignUpPage());
                 }
-                else
-                {
-                    DisplayAlert("Well how about that!", "Nigga it cant work the first time", "yeahhh");
-                }
+                else auth.LoginWithEmailAndPass(credential[0], credential[1]);
+
             }
             else
             {
